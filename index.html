@@ -1,0 +1,144 @@
+<html>
+    <head>
+        <title>JS</title>
+    </head>
+
+    <body>
+
+        <div style="text-align: center; margin-top: 2%;">
+
+            <h2>Welcome To Source Welfare Foundation</h2>
+
+            <input type="button" value="Color" onclick="colorBackground(this)"  style="margin-right: 2%;"/>
+            <input type="button" value="Revert" onclick="colorBackground(this)"  style="margin-right: 2%;"/>
+            <input type="button" value="Random" onclick="colorBackground(this)"  style="margin-right: 2%;"/>
+        
+        </div>
+
+        <div style="justify-content: center; display: flex; margin-top: 2%;">
+
+            <input type="button" value="Multiple" onclick="hideNshow(this)"  style="margin-right: 2%;"/>
+            <input type="button" value="Show" onclick="hideNshow(this)"  style="margin-right: 2%;"/>
+            <input type="button" value="Hide" onclick="hideNshow(this)"  style="margin-right: 2%;"/>
+            
+            <input type="text" id="tbox2" onkeypress="addHyphen(this)" placeholder="I am a textbox!" maxlength="13"/>
+        
+        </div>
+
+
+        <div style="justify-content: center; display: flex; margin-top: 2%;">
+
+            <input type="button" value="Enable/Disable" onclick="enableDisable(this)"  style="margin-right: 2%;"/>
+            <input type="button" value="Enable" onclick="enableDisable(this)"  style="margin-right: 2%;"/>
+            <input type="button" value="Disable" onclick="enableDisable(this)"  style="margin-right: 2%;"/>
+            
+            <input type="text" id="tbox" onkeypress="addHyphen(this)" placeholder="Enter CNIC" maxlength="15"/>
+        
+        </div>
+
+        <div style= "justify-content: center; display: flex; margin-top: 2%;">
+            <select id = "list" style="margin-right: 2%;"></select>
+            <input type="text" id = "txtbox" style="margin-right: 2%;"/>
+            <input type="button" value = "Add" onclick = "addOptions()" style="margin-right: 2%;"/>
+
+        </div>
+
+
+        <script>
+
+            // Adding Hyphens in textbox
+            function addHyphen (element){
+                
+                if(element.value.length < 15){
+                    if((element.value.length) == 5)
+                    {
+                        element.value = element.value.concat('-');
+                    }
+                    if((element.value.length) == 13)
+                    {
+                        element.value = element.value.concat('-');
+                    }
+                }
+                else{
+                    alert("Limit of characters exceeded ");
+                    return false;
+                }
+            }
+
+            //for enabling and disabling textbox
+            function enableDisable(btnId){
+                if(btnId.value == "Enable"){
+                    document.getElementById("tbox").removeAttribute("disabled");
+                }
+                else if(btnId.value == "Disable"){
+                    document.getElementById("tbox").setAttribute("disabled", "disabled");
+                }
+                else if(btnId.value == "Enable/Disable"){
+                    if(document.getElementById("tbox").getAttribute('disabled')=='disabled'){
+                        document.getElementById("tbox").removeAttribute("disabled");
+                    }
+                    else
+                        document.getElementById("tbox").setAttribute("disabled", "disabled");
+                }
+            }
+
+            //for hiding and showing textbox
+            function hideNshow(buttonId){
+                if(buttonId.value == "Show"){
+                    document.getElementById("tbox2").style.display='flex';
+                }
+
+                else if(buttonId.value == "Hide"){
+                    document.getElementById("tbox2").style.display='none';
+                }
+                
+                else if(buttonId.value == "Multiple"){
+                    if(document.getElementById("tbox2").style.display=='none'){
+                        document.getElementById("tbox2").style.display='flex';
+                    }
+                    else
+                        document.getElementById("tbox2").style.display='none';
+                }
+            }
+
+            //Change background Colors on buttonClick
+            function colorBackground(buttonId2)
+            {
+                if(buttonId2.value =='Color'){
+                    document.body.style.background = '#00BFB5';
+                    document.body.style.color = 'white';
+                }
+                else if(buttonId2.value =='Revert'){
+                    document.body.style.background = 'White';
+                    document.body.style.color = 'black';
+                }
+                else if(buttonId2.value =='Color/Revert'){
+                    if(document.body.style.backgroundColor == '#00BFB5'){
+                        console.log("I am in if");
+                        document.body.style.background = 'white';
+                        document.body.style.color = 'black';
+                    }
+                    else
+                    {
+                        console.log("I am in else");
+                        document.body.style.background = '#00BFB5';
+                        document.body.style.color = 'white';
+                    }     
+                }
+                else if(buttonId2.value =='Random'){
+                    document.body.style.background = '#'+Math.floor(Math.random()*16777215).toString(16);
+                }
+
+            }
+
+            //Add items in the dropdown menu
+            function addOptions(){
+                var list = document.getElementById("list");
+                var option = document.createElement("OPTION");
+                option.innerHTML = document.getElementById("txtbox").value;
+                list.options.add(option);
+                document.getElementById("txtbox").value = "";
+            }
+        </script>
+    </body>
+</html>
